@@ -1,0 +1,42 @@
+{% load static %} <!-- adicione esta linha -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}{% endblock %} | PODIVERSOS!
+    </title>
+    <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet" /> <!-- adicione esta linha -->
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"> <!-- adicione esta linha --> <!--add a pasta static-->
+</head>
+
+<body>
+    <header>
+        <a href="{% url 'index' %}"> <img src="{% static 'pod03.png' %}"alt="logo" width="64" height="64"> </a> <!-- adicione esta linha -->
+        <nav>
+            <div class="navigation-box">
+                <a href="{% url 'index' %}" class="button">Home</a>    
+            </div>
+            <div class="navigation-box">
+                <a href="{% url 'about' %}" class="button">Sobre</a>
+            </div>
+    
+        </nav>
+
+    </header>
+    <main id="conteiner-principal">
+        {% block content %}
+        {% endblock content %}
+    </main>
+    <footer id="rodape-principal">
+        <p>
+            <small>Copyright 2023 Guzzi.</small>
+        </p>
+    </footer>
+</body>
+
+</html>

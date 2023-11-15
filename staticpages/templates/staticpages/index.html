@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Página Inicial
+{% endblock title %}
+
+{% block content %}
+<div class = "container">
+    <section>
+        <div class="content-item home">
+            <h1><i>PODIVERSOS</i></h1>
+            <h2>E porquê compartilhar podcasts?</h2>
+            <p>Bem vindo ao <i>PODIVERSOS</i>, o site destinado a compartilhar com o mundo um pouquinho sobre <b>podcasts</b>!
+                Neste site, você encontrará:</p>
+            <ul>
+                <li> Uma explicação sobre a motivação do site </li>
+                <li>Uma contextualização sobre a história dos podcasts</li>
+                <li>Um pouco sobre os primeiros podcasts que surgiram no Brasil</li>
+            </ul>
+            <h2>Os podcasts ao longo da História</h2>
+            <h3>Motivação do podiversos</h3>
+            <p>O blog Podiverso nasceu da ideia de compartilhar a ideia de conhecer, ouvir e gostar de podcasts. 
+                Aqui serão listados podcasts que sempre buscam proporcionar ao ouvinte conhecimento, seja ele científico,
+                 educacional, esportivo e cultural.
+                Você que se interessa também em ouvir podcasts e quer mostrar sua resenha de algum específico, 
+                junte-se com a gente! Vamos dissiminar informações pelo mundo.</p>
+            <h3>Sobre os podcasts</h3>
+            <p>Podcasts são programas de áudio, geralmente em formato de episódios, que podem abordar uma ampla variedade de temas, 
+                como notícias, entretenimento, educação, entrevistas, e muito mais. Eles são disponibilizados online para streaming ou download 
+                e podem ser ouvidos em dispositivos como smartphones, tablets e computadores. A palavra "podcast" é uma combinação de "iPod", o
+                 popular dispositivo da Apple, e "broadcast" (transmissão, em inglês), refletindo a facilidade com que esses programas podem ser 
+                 consumidos sob demanda. Os podcasts oferecem uma forma conveniente de aprender, se entreter e se manter atualizado sobre diversos 
+                 assuntos, e são populares em todo o mundo.</p>
+            <h3>Primeiros podcasts que surgiram no Brasil</h3>
+            <p>Identificar os primeiros podcasts específicos no Brasil pode ser desafiador devido à falta de registros precisos, 
+                mas alguns dos pioneiros incluem:
+
+                <li>Digital Minds: Um dos primeiros podcasts brasileiros, lançado em 2004, focado em tecnologia e inovação.</li>
+                
+                <li>Nerdcast: Iniciado em 2006, é um dos podcasts mais populares do Brasil. Produzido pelo site Jovem Nerd, aborda temas geek, 
+                    cultura pop, e diversos assuntos. </li>
+                
+                <li> Guia Prático: Criado por Rodrigo Ghedin e Ronaldo Prass em 2007, abordava temas relacionados à tecnologia e internet.</li>
+                
+                Esses podcasts foram alguns dos primeiros a explorar o formato no Brasil e contribuíram para a popularização do meio no país. 
+                Vale ressaltar que o cenário dos podcasts evoluiu significativamente desde então, com uma grande variedade de programas disponíveis 
+                em diversas categorias.</p>
+            <h3>Dias atuais</h3>
+            <p>Atualmente, os podcasts estão em alta, com uma explosão de conteúdo que abrange uma variedade de temas. 
+                Empresas, celebridades e criadores independentes contribuem para a diversidade do formato. A monetização, 
+                através de anúncios e assinaturas, se tornou comum, e as plataformas de streaming desempenham um papel fundamental 
+                na distribuição. Além disso, podcasts cultivam comunidades ativas e transcenderam fronteiras, proporcionando uma experiência 
+                global de consumo de conteúdo em áudio.</p>
+        </div>
+    </section>
+
+    <aside class="home">
+        <img src="{% static 'pod01.png' %}"  alt="paw trail" width="auto" height="50%">
+    </aside>
+    
+</div>
+{% endblock content %}
