@@ -1,5 +1,8 @@
-{% extends 'base.html' %} {% block title %} {{ post.name }} ({{
-    post.release_year }} {% endblock title %} {% block content %}
+{% extends 'base.html' %} 
+{% block title %} 
+{{ post.name }} {{ post.release_year }} 
+{% endblock title %} 
+{% block content %}
 
     <div class = "container">   
     <section class="lista-de-posts">
@@ -8,6 +11,8 @@
         <ul>
             <li>Nome: {{ post.name }}</li>
             <li>Ano de Lançamento: {{ post.release_year }}</li>
+            <li><a href="{% url 'post:update' post.id %}">Editar</a></li>
+            <li><a href="{% url 'post:delete' post.id %}">Apagar</a></li>
         </ul>
     </section>
     </div>

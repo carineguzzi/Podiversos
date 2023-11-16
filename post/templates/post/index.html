@@ -11,13 +11,14 @@
 
         {% for post in post_list %}
         <article class="post">
+            <a href="{% url 'post:detail' post.id %}"> <!-- modifique esta linha -->
             <a href="{% url 'post:detail' forloop.counter %}">
             <img src="{{ post.poster_url }}" alt="Poster do filme {{ post.name}}"/></a>
             <p>{{ post.name }} ({{ post.release_year }})</p>
         </article>
         {% endfor %}
         <p class="lista-de-posts">
-            Não encontrou o filme?
+            Não encontrou o podcast?
             <a href="{% url 'post:create' %}">Adicionar Novo Post</a>
           </p>
     </section>
