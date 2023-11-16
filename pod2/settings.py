@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'staticpages.apps.StaticpagesConfig', # adicione esta linha
+    'post.apps.PostConfig', # adicione esta linha
 ]
 
 MIDDLEWARE = [

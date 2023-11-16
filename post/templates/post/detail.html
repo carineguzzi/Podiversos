@@ -1,0 +1,14 @@
+{% extends 'base.html' %} {% block title %} {{ post.name }} ({{
+    post.release_year }} {% endblock title %} {% block content %}
+
+    <div class = "container">   
+    <section class="lista-de-posts">
+        <h2>Detalhes do Podcast{{ post.name }} ({{ post.release_year }})</h2> 
+        <img src="{{ post.poster_url }}" alt="Poster do filme {{ post.name}}" />
+        <ul>
+            <li>Nome: {{ post.name }}</li>
+            <li>Ano de Lançamento: {{ post.release_year }}</li>
+        </ul>
+    </section>
+    </div>
+    {% endblock content %}

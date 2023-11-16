@@ -1,0 +1,28 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <section class="lista-de-posts">
+        <h2>Todos os Podcasts</h2>
+
+    {% if post_list %}
+
+        {% for post in post_list %}
+        <article class="post">
+            <a href="{% url 'post:detail' forloop.counter %}">
+            <img src="{{ post.poster_url }}" alt="Poster do filme {{ post.name}}"/></a>
+            <p>{{ post.name }} ({{ post.release_year }})</p>
+        </article>
+        {% endfor %}
+        <p class="lista-de-posts">
+            Não encontrou o filme?
+            <a href="{% url 'post:create' %}">Adicionar Novo Post</a>
+          </p>
+    </section>
+    {% else %}
+        <p>Não foi encontrado nenhum filme.</p>
+</div>
+    {% endif %}
+{% endblock content %}
