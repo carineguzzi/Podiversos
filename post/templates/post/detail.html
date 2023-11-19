@@ -6,11 +6,15 @@
 
     <div class = "container">   
     <section class="lista-de-posts">
-        <h2>Detalhes do Podcast{{ post.name }} ({{ post.release_year }})</h2> 
+        <h2>Detalhes do Podcast </h2> 
         <img src="{{ post.poster_url }}" alt="Poster do filme {{ post.name}}" />
         <ul>
             <li>Nome: {{ post.name }}</li>
             <li>Ano de Lançamento: {{ post.release_year }}</li>
+            <li>Conteúdo do Post: </li>
+            <p>{{post.conteudo}}</p>
+            <li>Data de Postagem:</li>
+            <p>{{post.data_postagem}}</p>
             <li><a href="{% url 'post:update' post.id %}">Editar</a></li>
             <li><a href="{% url 'post:delete' post.id %}">Apagar</a></li>
         </ul>

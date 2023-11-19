@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Atualizar Dados do Podcast{{ post.name }} ({{ post.release_year}})</h2>
+<h2>Atualizar Dados do Podcast{{ post.name }} {{post.conteudo}} {{post.data_postagem}} ({{ post.release_year}})</h2>
 <form method="POST" action="{% url 'post:update' post.id%}">
     {% csrf_token %}
     {{ form.as_p }}

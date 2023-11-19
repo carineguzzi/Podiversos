@@ -20,10 +20,12 @@ def create_post(request):
         if form.is_valid():
             post_name = form.cleaned_data['name']
             post_release_year = form.cleaned_data['release_year']
+            post_conteudo = form.cleaned_data['conteudo']
+            post_data_postagem = form.cleaned_data['data_postagem']
             post_poster_url = form.cleaned_data['poster_url']
             post = Post(name=post_name,
-                          release_year=post_release_year,
-                          poster_url=post_poster_url)
+                          release_year=post_release_year, conteudo = post_conteudo,
+                          data_postagem = post_data_postagem, poster_url=post_poster_url)
             post.save()
             return HttpResponseRedirect(
                 reverse('post:detail', args=(post.id, )))
@@ -32,15 +34,15 @@ def create_post(request):
     context = {'form': form}
     return render(request, 'post/create.html', context)
 
-
 def update_post(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
-
     if request.method == "POST":
         form = PostForm(request.POST)
         if form.is_valid():
             post.name = form.cleaned_data['name']
             post.release_year = form.cleaned_data['release_year']
+            post_conteudo = form.cleaned_data['conteudo']
+            post_data_postagem = form.cleaned_data['data_postagem']
             post.poster_url = form.cleaned_data['poster_url']
             post.save()
             return HttpResponseRedirect(
@@ -50,19 +52,17 @@ def update_post(request, post_id):
             initial={
                 'name': post.name,
                 'release_year': post.release_year,
+                'conteudo' : post.conteudo,
+                'data_postagem' : post.data_postagem,
                 'poster_url': post.poster_url
             })
-
     context = {'post': post, 'form': form}
     return render(request, 'post/update.html', context)
 
-
 def delete_post(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
-
     if request.method == "POST":
         post.delete()
         return HttpResponseRedirect(reverse('post:index'))
-
     context = {'post': post}
     return render(request, 'post/delete.html', context)

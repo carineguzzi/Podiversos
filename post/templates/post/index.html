@@ -14,7 +14,7 @@
             <a href="{% url 'post:detail' post.id %}"> <!-- modifique esta linha -->
             <a href="{% url 'post:detail' forloop.counter %}">
             <img src="{{ post.poster_url }}" alt="Poster do filme {{ post.name}}"/></a>
-            <p>{{ post.name }} ({{ post.release_year }})</p>
+            <p>{{ post.name }} {{post.conteudo}} {{post.data_postagem}} ({{ post.release_year }})</p>
         </article>
         {% endfor %}
         <p class="lista-de-posts">
