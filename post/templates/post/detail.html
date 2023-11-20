@@ -15,8 +15,30 @@
             <p>{{post.conteudo}}</p>
             <li>Data de Postagem:</li>
             <p>{{post.data_postagem}}</p>
+            <section>
+                <h2>Comentários</h2>
+                <ul>
+                    {% if post.comment_set.all %}
+                        {% for comment in post.comment_set.all %}
+                            <section class="comment">
+                                <p> "{{ comment.text }}" </p>
+                                <p> <i>Autor: </i>{{ comment.author }}</p>
+                                <p><i>Postado em: </i> {{ comment.data_postagem }}</p>
+                            </section>
+                        {% endfor %}
+                    {% else %}
+                        <p><i>Não há comentários para este post.</i></p>
+                    {% endif %}
+                </ul>
+            
+                {% if post.category_set.all %}
+                <p>Categorias deste post: {{ post.category_set.all|join:", " }} </p>
+                {% endif %}
+            </section>        
+    
             <li><a href="{% url 'post:update' post.id %}">Editar</a></li>
             <li><a href="{% url 'post:delete' post.id %}">Apagar</a></li>
+            <a class="button voltar" href="{% url 'post:comment' post.id %}" >Postar um comentário</a>
         </ul>
     </section>
     </div>
