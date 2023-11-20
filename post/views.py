@@ -1,18 +1,76 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-from .models import Post
-from .temp_data import post_data
 from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse, HttpResponseRedirect
+from .temp_data import post_data
+from django.urls import reverse, reverse_lazy
+from .models import Post
+from django.views import generic
 from .forms import PostForm
+from django.views.generic.edit import CreateView, DeleteView, UpdateView, FormView
+
+
+class PostListView(generic.ListView):
+   post = Post
+   template_name = 'post/index.html'
+
+
+   def get_queryset(self):
+       return Post.objects.order_by('id')
+
+
+class PostDetailView(generic.DetailView):
+   post = Post
+   template_name = 'post/detail.html'
+
+
+   def get_queryset(self):
+       return Post.objects.all()
+
+
+class PostCreateView(CreateView):
+   form_class = PostForm
+   template_name = 'post/create.html'
+   success_url = reverse_lazy('post:index')
+
+
+   def form_valid(self, form):
+       return super().form_valid(form)
+
+
+class PostUpdateView(UpdateView):
+   form_class = PostForm
+   template_name = 'post/update.html'
+   success_url = reverse_lazy('post:index')
+
+
+   def form_valid(self, form):
+       return super().form_valid(form)
+
+
+   def get_queryset(self):
+       return Post.objects.all()
+
+
+class PostDeleteView(DeleteView):
+   model = Post
+   success_url = reverse_lazy('post:index')
+   template_name = 'post/delete.html'
+
+
+   def get_object(self, queryset=None):
+     post_id = self.request.POST.get('pk')
+     return self.get_queryset().filter(pk=post_id).get()
+
 
 def list_post(request):
     context = {"post_list": post_data}
     return render(request, 'post/index.html', context)
 
+
 def detail_post(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
     context = {'post': post}
     return render(request, 'post/detail.html', context)
+
 
 def create_post(request):
     if request.method == 'POST':
@@ -33,6 +91,7 @@ def create_post(request):
         form = PostForm()
     context = {'form': form}
     return render(request, 'post/create.html', context)
+
 
 def update_post(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
@@ -58,6 +117,7 @@ def update_post(request, post_id):
             })
     context = {'post': post, 'form': form}
     return render(request, 'post/update.html', context)
+
 
 def delete_post(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
