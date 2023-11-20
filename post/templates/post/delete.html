@@ -3,8 +3,7 @@
 <form action="{% url 'post:delete' post.id %}" method="post">
   {% csrf_token %}
   <p>
-    Você tem certeza que deseja apagar o filme "{{ post.name }} ({{
-    post.release_year }})"?
+    Você tem certeza que deseja apagar o Post?
   </p>
   <button type="submit">Apagar</button>
 </form>

@@ -2,9 +2,9 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from .temp_data import post_data
 from django.urls import reverse, reverse_lazy
-from .models import Post
+from .models import Post, Comment
 from django.views import generic
-from .forms import PostForm
+from .forms import PostForm, CommentForm
 from django.views.generic.edit import CreateView, DeleteView, UpdateView, FormView
 
 
@@ -126,3 +126,24 @@ def delete_post(request, post_id):
         return HttpResponseRedirect(reverse('post:index'))
     context = {'post': post}
     return render(request, 'post/delete.html', context)
+    
+def create_comment(request, post_id):
+    post = get_object_or_404(Post, pk=post_id)
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment_author = form.cleaned_data['author']
+            comment_text = form.cleaned_data['text']
+            comment_data_postagem= form.cleaned_data['data_postagem']
+            comment = Comment(author=comment_author,
+                            text=comment_text,
+                            data_postagem=comment_data_postagem,
+                            post=post)
+            comment.save()
+            return HttpResponseRedirect(
+                reverse('post:detail', args=(post_id, )))
+    else:
+        form = CommentForm()
+    context = {'form': form, 'post': post}
+    return render(request, 'post/comment.html', context)
+

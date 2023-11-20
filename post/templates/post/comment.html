@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <section class="form">
+        <h2>Criar um comentário</h2>
+        <form method="POST" action="{% url 'post:comment' post.id %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Postar</button>
+        </form>
+        <a class="button voltar" href="{% url 'post:detail' post.id %}" >Voltar</a>
+    </section>
+    
+</div>
+
+{% endblock content %}
